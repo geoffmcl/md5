@@ -40,7 +40,8 @@
   2002-04-13 lpd Splits off main program into a separate file, md5main.c.
   2008-11-26 grm Added simple file handling to interface, and compiled using
                  Microsoft Visual Studio 2005 (MSVC8), in an XP machine,
-                 and later with VS 2019 (MSVC16), in x64 (64-bits).
+  2020-06-10 grm Later with VS 2019 (MSVC16), in x64 (64-bits).
+
  */
 
 #ifdef _MSC_VER

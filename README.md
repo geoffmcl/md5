@@ -30,7 +30,7 @@ The `options` include -
 
 ```
    * `-G "name of generator"` to select what you will use to compile and link the applications.
-   * `-DCMAKE_INSTALL_PREFIX:PATH=/path/for/install` but this will reguire modification of CMakeLists.txt
+   * `-DCMAKE_INSTALL_PREFIX:PATH=/path/for/install`, defaults /usr/local in unix.
    * The are many other cmake options...
 ```
 
