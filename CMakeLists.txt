@@ -113,7 +113,7 @@ if (MSVC)
     set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
 endif ()
 # deal with install, if any...
-#install( TARGETS ${name} DESTINATION bin )
+install( TARGETS ${name} DESTINATION bin )
 
 # have 1 C/C++ sources, 0 headers
 set(name md5-tc)
@@ -129,7 +129,7 @@ if (MSVC)
     set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
 endif ()
 # deal with install, if any...
-#install( TARGETS ${name} DESTINATION bin )
+install( TARGETS ${name} DESTINATION bin )
 
 
 # eof
