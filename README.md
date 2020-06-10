@@ -23,7 +23,8 @@ Uses [CMake][10] to generate the build files of your choice.
 ```
   cd build  # do not build in the root
   cmake -S .. [options] [-A Win32|x64]
-  cmake --build . --config Release
+  cmake --build . --config Release # for windows, OR
+  make # for Unix Makefile
 ```
 
 The `options` include -
@@ -34,7 +35,7 @@ The `options` include -
    * The are many other cmake options...
 ```
 
-The is a build-me.bat file, which can maybe be modified to suit your environment...
+There is a build-me.bat file, which can maybe be modified to suit your environment... and thanks to the easy sharing of this repo, there is now a build-me.sh which should work in your unix/linux/mak environment.
 
   [10]: https://cmake.org/download/
 
