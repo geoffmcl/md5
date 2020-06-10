@@ -65,6 +65,7 @@ if(WIN32 AND MSVC)
     endif ()
 else()
     # items for unix
+    list(APPEND add_LIBS "m")
 endif()
 
 set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${WARNING_FLAGS} ${MSVC_FLAGS} -D_REENTRANT" )

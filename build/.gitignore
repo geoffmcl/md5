@@ -11,3 +11,7 @@ cmake_install.cmake
 *.dir/*
 *.sln
 x64/*
+Makefile
+md5
+md5-tc
+

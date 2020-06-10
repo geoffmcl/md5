@@ -178,7 +178,7 @@ int main(int argc, char **argv) {
         // benchmark
     // int i;
     // for (i = 0; i < 1000000; i++) {
-        md5(msg, len);
+        md5((uint8_t *)msg, len);
     // }
  
     //var char digest[16] := h0 append h1 append h2 append h3 //(Output is in little-endian)

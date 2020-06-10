@@ -44,6 +44,7 @@
 
  */
 
+#ifdef _WIN32
 #ifdef _MSC_VER
 #pragma warning(disable:4996)
 #ifdef UNICODE
@@ -52,6 +53,12 @@
 #ifdef _UNICODE
 #undef _UNICODE
 #endif
+#endif // _MSC_VER
+#else
+// unix things
+#define __int64 __int64_t
+// #define _GNU_SOURCE         /* See feature_test_macros(7) */
+// #include <math.h>
 #endif
 
 #include <sys/types.h>  // must be this order types, then stat
@@ -145,6 +152,7 @@ do_test(void)
    return status;
 }
 
+#if 0 // 00000000000000000000000000000000000000000000000000000000000000000
 static int
 do_test_original(void)
 {
@@ -177,6 +185,8 @@ do_test_original(void)
 
    return status;
 }
+
+#endif // #if 0 // 00000000000000000000000000000000000000000000000000000000000000000
 
 /* Print the T values. */
 static int
@@ -269,13 +279,23 @@ int   do_file( char * file, char * exe )
    char * cp = buffer;
    size_t read;
    FILE * pf;
+   
+#ifdef _MSC_VER
    struct __stat64 buf;
-
    if( _stat64(file, &buf) ) {
       printf("ERROR: Can NOT stat file [%s] ... check name, location ...\n",
          file );
       return 1;
    }
+#else
+   struct stat buf;
+   if( stat(file, &buf) ) {
+      printf("ERROR: Can NOT stat file [%s] ... check name, location ...\n",
+         file );
+      return 1;
+   }
+#endif
+
    pf = fopen(file, "rb"); // open in binary mode
    if( !pf ) {
       printf("ERROR: Can NOT open file [%s] ... check name, location ...\n",
@@ -312,7 +332,7 @@ int   do_file( char * file, char * exe )
          printf(html_head, file);
          printf("<h1 align=\"center\">MD5 for %s</h1>\n", file);
          printf(table_bgn, file);
-         printf(table_head);
+         printf("%s",table_head);
          printf("<tr>\n");
          printf("<td><a href=\"%s\">%s</a></td>\n", file, file);
          printf("<td><tt>%s</tt></td>\n", hex_output);
@@ -331,7 +351,7 @@ int   do_file( char * file, char * exe )
          sprintf( EndBuf(cp), " dated %s, of %s bytes.\n",
             get_time_string(buf.st_mtime),
             get_number_string(buf.st_size) );
-         printf(cp);
+         printf("%s",cp);
       }
    } else {
       printf("ERROR: Read error on file [%s], or it is NULL ...\n",
@@ -386,8 +406,8 @@ Set_Digest:
                   printf("ERROR: Multiple digests! Already have [%s]\n", test_digest);
                   goto Unknown_ARG;
                }
-               if(strlen(arg) != 32) {
-                  printf("ERROR: Digest must be 32 bytes long! Have %d?\n", (int)strlen(arg));
+               if(len != 32) {
+                  printf("ERROR: Digest must be 32 bytes long! Have %d?\n", (int)len);
                   goto Unknown_ARG;
                }
                test_digest = arg;   // set pointer to TEST digest string
